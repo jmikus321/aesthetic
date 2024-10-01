@@ -120,6 +120,7 @@
 		<h3>Mám záujem o konzultáciu</h3>
 					
 <form action="send_email.php" method="post">
+	<input type="hidden" name="recaptchaResponse" id="recaptchaResponse">
 	    
 		<div class="row form-group">
 			<div class="col-md-12">				
@@ -142,14 +143,14 @@
 		     </div>
 		</div>
 
-   <!-- Google reCAPTCHA widget -->
-    <div class="g-recaptcha" data-sitekey="6LfXvE8qAAAAAIQL3S7hcBB8evldl_a4-qB6JZ_4"></div>
+   <!-- Google reCAPTCHA widget 
+    <div class="g-recaptcha" data-sitekey="6LfXvE8qAAAAAIQL3S7hcBB8evldl_a4-qB6JZ_4"></div>-->
 
-    <button type="submit">Odoslať</button>
+    <button class="g-recaptcha" type="submit">Odoslať</button>
 </form>
 
-<!-- Include the Google reCAPTCHA API -->
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<!-- Include the Google reCAPTCHA API 
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>-->
 		</div>
 				
 				<div class="col-md-5 col-md-push-1 animate-box">
@@ -243,6 +244,33 @@
 	<script src="js/magnific-popup-options.js"></script>
 	<!-- Main -->
 	<script src="js/main.js"></script>
+
+	<script>
+
+        grecaptcha.ready(function(){
+
+            grecaptcha.execute('6LfXvE8qAAAAAIQL3S7hcBB8evldl_a4-qB6JZ_4', {action:'contactForm'}).then(function(token){
+                document.getElementById('recaptchaResponse').value = token;
+            });
+
+        });
+
+        /*function onSubmit(token) {
+
+            let recaptchaResponse = document.getElementById("recaptchaResponse")
+            recaptchaResponse.value = token
+
+            document.getElementById("prihlaskaForm").submit();
+        }
+
+        function onSubmitKontakt(token) {
+
+            let recaptchaResponse = document.getElementById("recaptchaResponse")
+            recaptchaResponse.value = token
+
+           // document.getElementById("contact-form").submit();
+        }*/
+    </script>
 
 	</body>
 </html>
